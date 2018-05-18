@@ -1,26 +1,57 @@
 document.addEventListener('DOMContentLoaded', startGame)
 
+
 // Define your `board` object here!
- var board = {
-   cells: [
-     {row: 1, col: 0, isMine: 'true', hidden: true},
-     {row: 1, col: 1, isMine: 'true', hidden: true},
-     {row: 1, col: 2, isMine: 'true', hidden: true},
-     {row: 2, col: 0, isMine: '', hidden: true},
-     {row: 2, col: 1, isMine: '', hidden: true},
-     {row: 2, col: 2, isMine: '', hidden: true},
-     {row: 3, col: 0, isMine: '', hidden: true},
-     {row: 3, col: 1, isMine: '', hidden: true},
-     {row: 3, col: 2, isMine: '', hidden: true},
-   ]
- }; 
+var board;
+var boardSize = 4;
+
+// function createBoard (size){
+//   board = {
+//     cells: []
+//   }
+//     for (var y = 0; y < size; y++){
+//       for (var x = 0; x < size; x++){
+//         board.cells.push({
+//           row: y,
+//           col: x,
+//           isMarked: false,
+//           hidden: true,
+//           isMine: Math.floor(Math.random()*1.3)
+//         })
+//       }
+
+//     }
+// }
+
+function createBoard () {
+  board = {
+    cells:[]
+  }
+  for (var i = 0; i < boardSize; i++) {
+    for (var n = 0; n < boardSize; n ++) {
+      board.cells.push ({
+        row: i,
+        col: n,
+        isMine: Math.floor(Math.random()*1.3),
+        isMarked: false,
+        hidden: true
+      })
+    }
+  }
+}
 
 function startGame () {
   // Don't remove this function call: it makes the game work!
+  createBoard()
   lib.initBoard()
+
 for (let i = 0; i < board.cells.length; i++){
   document.addEventListener('click', checkForWin);
   document.addEventListener('contextmenu', checkForWin);
+  document.getElementById("reset").addEventListener("click", resetGame)
+  document.getElementById("large").addEventListener("click", gameLarge)
+  document.getElementById("medium").addEventListener("click", gameMedium)
+  document.getElementById("small").addEventListener("click", gameSmall)
 }
 
 }
@@ -67,3 +98,29 @@ var count = 0;
   return count;
 }
 
+function resetGame(){
+  board = {cells: []} 
+  document.getElementsByClassName('board')[0].innerHTML = ''; 
+  startGame() 
+}
+
+function gameLarge () {
+  boardSize = 6;
+  board = {cells: []} 
+  document.getElementsByClassName('board')[0].innerHTML = ''; 
+  startGame()
+}
+
+function gameMedium () {
+  boardSize = 4;
+  board = {cells: []} 
+  document.getElementsByClassName('board')[0].innerHTML = ''; 
+  startGame()
+}
+
+function gameSmall () {
+  boardSize = 3;
+  board = {cells: []} 
+  document.getElementsByClassName('board')[0].innerHTML = ''; 
+  startGame()
+}
