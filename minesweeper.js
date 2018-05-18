@@ -60,6 +60,10 @@ for (let i = 0; i < board.cells.length; i++){
 document.getElementById('standardtheme').onclick = function () { 
   document.getElementById('maincss').href = 'minesweeper.css';
 };
+//theme summer
+document.getElementById('summertheme').onclick = function () { 
+  document.getElementById('maincss').href = 'summer.css';
+};
 }
 
 }

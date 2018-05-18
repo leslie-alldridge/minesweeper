@@ -8,7 +8,7 @@ html, body {
     align-items: center;
     justify-content: flex-center;
     flex-direction: column;
-    background-image: url(./images/simpbg.jpg);
+    background-image: url(./images/summerbg.jpg);
     background-size: 100%;
   }
   
@@ -16,9 +16,7 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: rgb(255,20,147);
-    font-weight: 800;
-    text-shadow: -1px 0 black, 0 2px black, 2px 0 black, 0 -1px black;
+    color: yellow;
   }
   
   #message {
@@ -49,7 +47,7 @@ html, body {
   }
   
   div.mine, div.mine:hover {
-    background: no-repeat center/60% url("images/simpbomb.jpg") crimson;
+    background: no-repeat center/60% url("images/summerbomb.jpg") crimson;
   }
   
   div.hidden {
@@ -61,7 +59,7 @@ html, body {
   }
   
   div.marked, div.marked:hover {
-    background: no-repeat center/80% url("images/donut.jpeg") pink;
+    background: no-repeat center/60% url("images/sun.png") deepskyblue;
   }
   
   .buttons {
