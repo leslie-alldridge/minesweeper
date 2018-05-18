@@ -18,6 +18,11 @@ document.addEventListener('DOMContentLoaded', startGame)
 function startGame () {
   // Don't remove this function call: it makes the game work!
   lib.initBoard()
+for (let i = 0; i < board.cells.length; i++){
+  document.addEventListener('click', checkForWin);
+  document.addEventListener('contextmenu', checkForWin);
+}
+
 }
 
 // Define this function to look for a win condition:
@@ -25,6 +30,18 @@ function startGame () {
 // 1. Are all of the cells that are NOT mines visible?
 // 2. Are all of the mines marked?
 function checkForWin () {
+  for (let i = 0; i < board.cells.length; i++){
+    var checkBoard = board.cells[i];
+    //mine is present but not checked
+    if (checkBoard.isMine && !checkBoard.isMarked){
+      return;
+    }
+    //hidden mine still exists
+    else if (!checkBoard.isMine && checkBoard.hidden){
+      return;
+    }
+  }
+  lib.displayMessage('You win!');
 
   // You can use this function call to declare a winner (once you've
   // detected that they've won, that is!)
