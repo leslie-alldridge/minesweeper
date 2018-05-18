@@ -52,6 +52,14 @@ for (let i = 0; i < board.cells.length; i++){
   document.getElementById("large").addEventListener("click", gameLarge)
   document.getElementById("medium").addEventListener("click", gameMedium)
   document.getElementById("small").addEventListener("click", gameSmall)
+  //themes are below here!
+  document.getElementById('simpsonstheme').onclick = function () { 
+    document.getElementById('maincss').href = 'simpsons.css';
+};
+//theme classic
+document.getElementById('standardtheme').onclick = function () { 
+  document.getElementById('maincss').href = 'minesweeper.css';
+};
 }
 
 }
