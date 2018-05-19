@@ -5,6 +5,14 @@ document.addEventListener('DOMContentLoaded', startGame)
 var board;
 var boardSize = 4;
 
+//sounds
+
+var soundMark = new Audio("./audio/simpsonsbomb.mp3");
+var soundClick = new Audio("./audio/click.mp3");
+var soundWin = new Audio("./audio/classicwin.mp3");
+
+
+
 // function createBoard (size){
 //   board = {
 //     cells: []
@@ -48,6 +56,8 @@ function startGame () {
 for (let i = 0; i < board.cells.length; i++){
   document.addEventListener('click', checkForWin);
   document.addEventListener('contextmenu', checkForWin);
+  document.addEventListener('contextmenu', rightClick);
+  document.addEventListener('click', leftClick);
   document.getElementById("reset").addEventListener("click", resetGame)
   document.getElementById("large").addEventListener("click", gameLarge)
   document.getElementById("medium").addEventListener("click", gameMedium)
@@ -68,6 +78,7 @@ document.getElementById('summertheme').onclick = function () {
 
 }
 
+
 // Define this function to look for a win condition:
 //
 // 1. Are all of the cells that are NOT mines visible?
@@ -84,7 +95,9 @@ function checkForWin () {
       return;
     }
   }
+  
   lib.displayMessage('You win!');
+  winSound();
 
   // You can use this function call to declare a winner (once you've
   // detected that they've won, that is!)
@@ -136,3 +149,16 @@ function gameSmall () {
   document.getElementsByClassName('board')[0].innerHTML = ''; 
   startGame()
 }
+
+function rightClick () {
+  soundMark.play();
+}
+
+function leftClick(){
+  soundClick.play();
+}
+
+function winSound () {
+  soundWin.play();
+}
+
