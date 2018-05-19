@@ -1,36 +1,15 @@
 document.addEventListener('DOMContentLoaded', startGame)
 
-
 // Define your `board` object here!
-var board;
+var board = {cells: []};
 var boardSize = 4;
 
 //sounds
-
 var soundMark = new Audio("./audio/simpsonsbomb.mp3");
 var soundClick = new Audio("./audio/click.mp3");
 var soundWin = new Audio("./audio/classicwin.mp3");
 
-
-
-// function createBoard (size){
-//   board = {
-//     cells: []
-//   }
-//     for (var y = 0; y < size; y++){
-//       for (var x = 0; x < size; x++){
-//         board.cells.push({
-//           row: y,
-//           col: x,
-//           isMarked: false,
-//           hidden: true,
-//           isMine: Math.floor(Math.random()*1.3)
-//         })
-//       }
-
-//     }
-// }
-
+//board
 function createBoard () {
   board = {
     cells:[]
@@ -51,6 +30,10 @@ function createBoard () {
 function startGame () {
   // Don't remove this function call: it makes the game work!
   createBoard()
+  for (var i = 0; i < board.cells.length; i++) {
+    board.cells[i].surroundingMines = countSurroundingMines (board.cells[i]);
+    }
+
   lib.initBoard()
 
 for (let i = 0; i < board.cells.length; i++){
@@ -77,6 +60,7 @@ document.getElementById('summertheme').onclick = function () {
 }
 
 }
+
 
 
 // Define this function to look for a win condition:
@@ -112,15 +96,18 @@ function checkForWin () {
 //
 // It will return cell objects in an array. You should loop through 
 // them, counting the number of times `cell.isMine` is true.
+
 function countSurroundingMines (cell) {
-var surroundingCells = lib.getSurroundingCells(cell.row, cell.col);
-var count = 0;
-  for (n = 0; n < surroundingCells.length; n++) {
-    if (surroundingCells[n].isMine == true) {
+  var surrounding = lib.getSurroundingCells(cell.row, cell.col);
+
+  var count = 0;
+
+  for (var i = 0; i < surrounding.length; i++){
+    if (surrounding[i].isMine){
       count++;
     }
   }
-  return count;
+  return count;  
 }
 
 function resetGame(){
