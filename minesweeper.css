@@ -8,6 +8,8 @@ body {
   align-items: center;
   justify-content: flex-center;
   flex-direction: column;
+  background-image: url(./images/classicbg.jpg);
+  background-size: 100%;
 }
 
 #message, #notes {
